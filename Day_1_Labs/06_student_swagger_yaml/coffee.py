@@ -33,22 +33,3 @@ def read():
     return [COFFEE[key] for key in sorted(COFFEE.keys())]
 
 # STUDENT DO Create a get route that accepts a parameter to return one drink
-# SOLUTION
-def read_one(coffee_name):
-    """
-    This function responds to a request for /api/coffee/{coffee}
-    with one matching coffee from coffee
-    :param coffee:   name of coffee drink to find
-    :return:        coffee matching the name
-    """
-    # Does the coffee exist in COFFEE?
-    if coffee_name in COFFEE:
-        coffee = COFFEE.get(coffee_name)
-
-    # otherwise, nope, not found
-    else:
-        abort(
-            404, "Coffee with name {coffee_name} not found".format(coffee_name=coffee_name)
-        )
-
-    return coffee
