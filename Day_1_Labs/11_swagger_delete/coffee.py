@@ -78,16 +78,22 @@ def create(coffee):
             "Coffe, {coffee_name}, already exists".format(coffee_name=coffee_name),
         )
 
-# STUDENT DO: Update the put request to also update the milk value
 def update(coffee_name, coffee):
     """
     This function updates an existing drink
     :param coffee_name:   Name of coffee to update in the 
     :param coffee:  Updated Drink Value
-    :param milk:  Updated Milk Value
     :return:        updated coffee object
     """
     # Does the drink exist?
-   
+    if coffee_name in COFFEE:
+        COFFEE[coffee_name]["coffee_name"] = coffee.get("coffee_name")
+        COFFEE[coffee_name]["timestamp"] = get_timestamp()
+
+        return COFFEE[coffee_name]
 
     # otherwise, nope, that's an error
+    else:
+        abort(
+            404, "Coffee with name {coffee_name} not found".format(coffee_name=coffee_name)
+        )

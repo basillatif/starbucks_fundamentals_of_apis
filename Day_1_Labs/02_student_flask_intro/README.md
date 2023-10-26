@@ -1,7 +1,13 @@
 # FLASK Practice
 
-## Create a home route using Flask that renders an html doc
+# consult the flask documentation: https://flask.palletsprojects.com/en/3.0.x/quickstart/
 
-## Create a custom route of your choosing 
+# Create an app, being sure to pass __name__
+# Define what to do when a user hits the index route; home route renders an html doc
+# Define what to do when a user hits the /about route
+
+
+
+
 
 ## BONUS - Create a route with a URL parameter

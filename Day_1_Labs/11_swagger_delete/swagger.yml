@@ -81,4 +81,27 @@ paths:
               timestamp:
                 type: "string"
 
-# STUDENT DO: Update the put request to also update the milk value
+    put:
+      operationId: "coffee.update"
+      tags:
+        - "Coffee"
+      summary: Update a coffee drink 
+      description: Update a coffee drink in the coffee object
+      parameters:
+        - name: coffee_name
+          in: path
+          description: Name the drink to update
+          type: "string"
+          required: True
+        - name: coffee
+          in: body
+          schema:
+            type: object
+            properties:
+              coffee_name:
+                type: "string"
+      responses:
+        200:
+          description: Successfully updated coffee name
+
+    

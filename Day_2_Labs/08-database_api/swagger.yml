@@ -1,0 +1,31 @@
+openapi: 3.0.1
+info:
+  title: Starbucks API Example
+  description: Starbucks API
+  version: 2.0.0
+servers:
+- url: /api
+paths:
+  /coffee:
+    get:
+      tags:
+      - Coffee
+      summary: The coffee data structure for our server application
+      description: Read the list of coffee drinks
+      operationId: coffee.read
+      responses:
+        200:
+          description: Successful read coffee list operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    coffee_name:
+                      type: string
+                    milk:
+                      type: string
+                    timestamp:
+                      type: string

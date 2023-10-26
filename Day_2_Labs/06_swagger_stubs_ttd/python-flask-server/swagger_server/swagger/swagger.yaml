@@ -1,0 +1,135 @@
+---
+swagger: "2.0"
+info:
+  description: "Starbucks API"
+  version: "1.0.0"
+  title: "Starbucks API Example"
+basePath: "/api"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /coffee:
+    get:
+      tags:
+      - "Coffee"
+      summary: "The coffee data structure for our server application"
+      description: "Read the list of coffee drinks"
+      operationId: "coffee_read"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful read coffee list operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "swagger_server.controllers.coffee_controller"
+    post:
+      tags:
+      - "Coffee"
+      summary: "Create a coffee drink and add it to the coffee list"
+      description: "Create a new drink in the coffee list"
+      operationId: "coffee_create"
+      parameters:
+      - in: "body"
+        name: "coffee"
+        description: "Coffee to create"
+        required: true
+        schema:
+          $ref: "#/definitions/coffee"
+      responses:
+        "201":
+          description: "Successfully created coffee drink in list"
+      x-swagger-router-controller: "swagger_server.controllers.coffee_controller"
+  /coffee/{coffee_name}:
+    get:
+      tags:
+      - "Coffee"
+      summary: "Read one drink from the coffee object"
+      description: "Read one drink from the coffee object"
+      operationId: "coffee_read_one"
+      parameters:
+      - name: "coffee_name"
+        in: "path"
+        description: "Name of coffee get from the list"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successfully read coffee from coffee list"
+          schema:
+            properties:
+              coffee_name:
+                type: "string"
+              milk:
+                type: "string"
+              timestamp:
+                type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.coffee_controller"
+    put:
+      tags:
+      - "Coffee"
+      summary: "Update a coffee drink"
+      description: "Update a coffee drink in the coffee object"
+      operationId: "coffee_update"
+      parameters:
+      - name: "coffee_name"
+        in: "path"
+        description: "Name the drink to update"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "coffee"
+        required: false
+        schema:
+          $ref: "#/definitions/coffee_1"
+      responses:
+        "200":
+          description: "Successfully updated coffee name"
+      x-swagger-router-controller: "swagger_server.controllers.coffee_controller"
+    delete:
+      tags:
+      - "Coffee"
+      summary: "Delete a coffee drink"
+      description: "Delete a coffee drink in the coffee object"
+      operationId: "coffee_delete"
+      parameters:
+      - name: "coffee_name"
+        in: "path"
+        description: "Name the drink to Delete"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successfully deleted coffee drink"
+      x-swagger-router-controller: "swagger_server.controllers.coffee_controller"
+definitions:
+  coffee:
+    type: "object"
+    properties:
+      coffee_name:
+        type: "string"
+        description: "Name of drink"
+      milk:
+        type: "string"
+        description: "type of milk to use"
+  inline_response_200:
+    type: "object"
+    properties:
+      coffee_name:
+        type: "string"
+      milk:
+        type: "string"
+      timestamp:
+        type: "string"
+    example:
+      milk: "milk"
+      coffee_name: "coffee_name"
+      timestamp: "timestamp"
+  coffee_1:
+    type: "object"
+    properties:
+      coffee_name:
+        type: "string"

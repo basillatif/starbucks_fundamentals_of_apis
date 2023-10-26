@@ -46,17 +46,3 @@ def create(coffee):
     is equal to the provided value. If the any() function returns False, it means that the provided value was not found in any of the nested dictionaries, 
     so the print statement will be executed.
     """
-    if not any(milk_name['milk'] == milk for milk_name in COFFEE.values()):
-        COFFEE[coffee_name] = {
-            "coffee_name": coffee_name,
-            "milk": milk,
-            "timestamp": get_timestamp(),
-        }
-        return make_response(
-            "{coffee_name} successfully created".format(coffee_name=coffee_name), 201
-        )
-    else:
-        abort(
-            406,
-            "Milk, {milk}, already exists".format(milk=milk),
-        )      

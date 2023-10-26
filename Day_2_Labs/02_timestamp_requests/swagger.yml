@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: Starbucks API Example
+  description: Starbucks API
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  /coffee:
+    post:
+      tags:
+        - Coffee
+      summary: Create a coffee drink and add it to the coffee list
+      description: Create a new drink in the coffee list
+      operationId: coffee.create
+      requestBody:
+        description: Coffee to create
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                coffee_name:
+                  type: string
+                  description: Name of drink
+                milk:
+                  type: string
+                  description: type of milk to use
+        required: true
+      responses:
+        '201':
+          description: Successfully created coffee drink in list
+          content: {}
+      x-codegen-request-body-name: coffee
+components: {}
